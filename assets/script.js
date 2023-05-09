@@ -17,12 +17,38 @@ const slides = [
 	}
 ]
 
+// const slides = await fetch("tableaux-slides.json").then(slides => slides.json());
+
 const div = slides[0];
 
-for (var i = 0; i < slides.length; i++) {
-	console.log(i);
+function generetedDots() {
+	for (let i = 0; i < slides.length; i++) {
+		const dotsSlides = document.querySelector(".dots");
+		const dotSlides = document.createElement("div");
+		dotSlides.classList.add("dot");
+		dotsSlides.appendChild(dotSlides);
+	}
 }
 
+
+function generetedSlider(slides) {
+	for (let i = 0; i < slides.length; i++) {
+
+		const imageSlides = document.createElement("img");
+		imageSlides.src = "./assets/images/slideshow/" + slides[i].image;
+
+		const taglineSlides = document.createElement("p");
+		document.body.appendChild(taglineSlides);
+		taglineSlides.appendChild(imageSlides);
+
+		console.log(slides[i].image);
+
+	}
+
+}
+
+generetedDots();
+generetedSlider(slides);
 
 var flecheGauche = document.querySelector(".arrow_left");
 
