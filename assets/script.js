@@ -17,20 +17,24 @@ const slides = [
 	}
 ]
 
-// const slides = await fetch("tableaux-slides.json").then(slides => slides.json());
-
-const div = slides[0];
-
+// Dots
 function generetedDots() {
 	for (let i = 0; i < slides.length; i++) {
-		const dotsSlides = document.querySelector(".dots");
-		const dotSlides = document.createElement("div");
-		dotSlides.classList.add("dot");
-		dotsSlides.appendChild(dotSlides);
+		const dotsParent = document.querySelector(".dots");
+		const dotChild = document.createElement("div");
+		dotChild.classList.add("dot");
+		dotsParent.appendChild(dotChild);
 	}
 }
 
+function firstElementDots() {
+	const dotsParent = document.querySelector(".dots");
+	const dotChild = document.querySelector(".dot");
+	dotChild.classList.add("dot_selected");
+}
 
+
+// Contenu 
 function generetedSlider(slides) {
 	for (let i = 0; i < slides.length; i++) {
 
@@ -49,17 +53,43 @@ function generetedSlider(slides) {
 
 generetedDots();
 generetedSlider(slides);
+firstElementDots();
 
+
+var slideIndex = 0;
+const slideShow = slides[slideIndex];
 var flecheGauche = document.querySelector(".arrow_left");
 
+// Fleches
 flecheGauche.onclick = function () {
-	console.log("fleche gauche");
+	if (slideIndex === 0) {
+		slideIndex = slides.length - 1
+	}
+	else slideIndex--;
+
+	console.log(slideIndex);
 }
 
 var flecheDroite = document.querySelector(".arrow_right");
 
 flecheDroite.onclick = function () {
-	console.log("fleche droite");
+	if (slideIndex === slides.length - 1) {
+		slideIndex = 0
+	}
+	else slideIndex++;
+
+	console.log(slideIndex);
 }
+
+//teste
+// const dotsSlides = document.querySelector(".dots");
+// dotsSlides.addEventListener('div', function () {
+// 	const slidesFilter = slides.filter(function (slides) {
+// 		return slides.item <= dotsSlides.ariaValueMax;
+// 	});
+// 	document.querySelector("banner").innerHTML = "";
+// 	generetedSlider(slides);
+
+// });
 
 
